@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\Categorys;
+use app\controllers\SiteController;
 
 AppAsset::register($this);
 ?>
@@ -25,10 +26,14 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<?php 
+// print_r($this);die();
+?>
+
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Магазин',
+        'brandLabel' => SiteController::getNameMagazin(),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',

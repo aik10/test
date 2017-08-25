@@ -1,19 +1,29 @@
 <?php
 
+use yii\widgets\ActiveForm;
+use yii\widgets\Html;
+
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
 ?>
+
+<div class="products-form">
+    <?php $form= ActiveForm::begin(); ?>
+    <?= $form->field($magazin, 'id')->dropDownList($magazins, ['style'=>'width:300px', 'onchange'=> 'this.form.submit()'])?>
+    <?php ActiveForm::end(); ?>
+</div>
+
 <div class="site-index">
 
-    <div class="jumbotron">
+<!--     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
+    </div> -->
+<!-- 
     <div class="body-content">
 
         <div class="row">
@@ -49,5 +59,5 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-    </div>
+    </div> -->
 </div>

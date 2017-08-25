@@ -8,9 +8,14 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Magazin;
+use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
+    public static $nameMagazin = 'Магазин';
+    public static $idMagazin = null;
+
     /**
      * @inheritdoc
      */
@@ -60,7 +65,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $magazin = new Magazin();
+        $magazins = ArrayHelper::map(Magazin::find()->asArray()->all(), 'id', 'c_name');
+
+        if ($magazin->load(Yii::$app->request->post())) {
+// print_r($this->idMagazin);die();
+            $find = Magazin::findOne($magazin->id);
+            $this->setMagazin($find);
+            return $this->render('index', compact('magazins', 'magazin'));
+        }
+
+        return $this->render('index', compact('magazins', 'magazin'));
+    }
+
+    public static function getNameMagazin() {
+        return self::$nameMagazin;
+    }
+
+    public static function setMagazin($magazin) {
+        self::$nameMagazin = $magazin->c_name;
+        self::$idMagazin = $magazin->id;
     }
 
     /**
