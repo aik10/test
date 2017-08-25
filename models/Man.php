@@ -34,6 +34,8 @@ class Man extends ActiveRecord {
 //     return 'man';
 // }
 
+
+
 }
 
 ?>
